@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080', // Backend server running on port 8080
+  baseURL: 'https://backend-2-j5ns.onrender.com', // Render backend URL
 });
 
 // Add a request interceptor to include the auth token
