@@ -8,7 +8,7 @@ import IssueForm from '../components/IssueForm';
 const Dashboard = () => {
   const { user, token, logout } = useContext(AuthContext);
   const { issues, loading, error, fetchIssues, searchIssues } = useIssueContext();
-  
+
   const [stats, setStats] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,9 +48,9 @@ const Dashboard = () => {
       fetchIssues(filters);
       fetchStats();
     } catch (err) {
-      setSyncResult({ 
-        success: false, 
-        message: err.response?.data?.message || 'Sync failed' 
+      setSyncResult({
+        success: false,
+        message: err.response?.data?.message || 'Sync failed'
       });
     } finally {
       setSyncing(false);
@@ -68,9 +68,9 @@ const Dashboard = () => {
         </div>
         <div className="header-actions">
           {isAdminOrManager && (
-            <button 
-              className="sync-btn" 
-              onClick={handleSync} 
+            <button
+              className="sync-btn"
+              onClick={handleSync}
               disabled={syncing}
             >
               {syncing ? 'Syncing...' : 'Sync Data from External API'}
@@ -117,9 +117,9 @@ const Dashboard = () => {
 
       <div className="controls-bar">
         <form onSubmit={handleSearch} className="search-form">
-          <input 
-            type="text" 
-            placeholder="Search issues..." 
+          <input
+            type="text"
+            placeholder="Search issues..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -132,18 +132,18 @@ const Dashboard = () => {
         </form>
 
         <div className="filters">
-          <select 
-            value={filters.status} 
-            onChange={(e) => setFilters({...filters, status: e.target.value, page: 1})}
+          <select
+            value={filters.status}
+            onChange={(e) => setFilters({ ...filters, status: e.target.value, page: 1 })}
           >
             <option value="">All Statuses</option>
             <option value="open">Open</option>
             <option value="in-progress">In Progress</option>
             <option value="closed">Closed</option>
           </select>
-          <select 
-            value={filters.priority} 
-            onChange={(e) => setFilters({...filters, priority: e.target.value, page: 1})}
+          <select
+            value={filters.priority}
+            onChange={(e) => setFilters({ ...filters, priority: e.target.value, page: 1 })}
           >
             <option value="">All Priorities</option>
             <option value="low">Low</option>
@@ -158,9 +158,9 @@ const Dashboard = () => {
       </div>
 
       {showForm && (
-        <IssueForm 
-          onSuccess={() => { setShowForm(false); fetchStats(); }} 
-          onCancel={() => setShowForm(false)} 
+        <IssueForm
+          onSuccess={() => { setShowForm(false); fetchStats(); }}
+          onCancel={() => setShowForm(false)}
         />
       )}
 
